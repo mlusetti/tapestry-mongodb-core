@@ -1,0 +1,28 @@
+description = "Basic MongoDB services for Tapestry, useable outside of a Tapestry web application"
+
+apply plugin: 'base'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile group: 'org.apache.tapestry', name: 'tapestry-ioc', version: '5.3.3'
+
+  // compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.7.3', transitive: false
+  compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.7.3'
+
+  testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: '5.3.3'
+  // testCompile "org.easymock:easymock:$easymockVersion"
+  // testCompile "org.testng:testng:$testngVersion", { transitive = false }
+
+}
+
+jar {
+    manifest {
+        attributes 'Tapestry-Module-Classes': 'org.apache.tapestry5.mongodb.MongodbCoreModule'
+    }
+}
