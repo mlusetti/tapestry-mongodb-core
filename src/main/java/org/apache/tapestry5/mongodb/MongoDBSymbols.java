@@ -20,8 +20,6 @@ public class MongoDBSymbols
      */
     public static final String READ_PREFERENCE = "tapestry.mongodb.read_preference";
 
-
-
     // ########################################################################
 
     /**
