@@ -38,8 +38,22 @@ public class MongoDBSymbols
     public static final String J = "tapestry.mongodb.j";
 
     /**
+     *  The "w" value of the global WriteConcern. Default to 0
+     */
+    public static final String W = "tapestry.mongodb.w";
+
+    /**
      * The "wtimeout" value of the global WriteConcern. Default is 0.
      */
     public static final String WTIMEOUT = "tapestry.mongodb.wtimeout";
 
+    /**
+     * The MongoDB default database name to connect to. No default provided.
+     */
+    public static final String DEFAULT_DB_NAME = "tapestry.mongodb.default_db_name";
+
+    /**
+     * Where to use or not the <em>consisten request</em> paradigm. Default to false;
+     */
+    public static final String CONSISTENT_REQUEST = "tapestry.mongodb.consistent_request";
 }
