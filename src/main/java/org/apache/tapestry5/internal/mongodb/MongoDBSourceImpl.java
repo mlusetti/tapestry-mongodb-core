@@ -8,6 +8,7 @@ import org.apache.tapestry5.mongodb.MongoDBSource;
 import org.apache.tapestry5.mongodb.MongoDBSymbols;
 import org.slf4j.Logger;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 /**
@@ -18,12 +19,9 @@ public class MongoDBSourceImpl implements MongoDBSource
     private final Logger logger;
 
     private final Mongo mongo;
-    private final String defaultDbName;
-    private final boolean consistentRequest;
 
 
     public MongoDBSourceImpl(Logger logger,
-            @Symbol(MongoDBSymbols.DEFAULT_DB_NAME) String defaultDbName,
             @Symbol(MongoDBSymbols.CONNECTIONS_PER_HOSTS) int connectionPerHost,
             @Symbol(MongoDBSymbols.FSYNC) boolean fsync,
             @Symbol(MongoDBSymbols.J) boolean j,
@@ -31,12 +29,9 @@ public class MongoDBSourceImpl implements MongoDBSource
             @Symbol(MongoDBSymbols.WTIMEOUT) int wtimeout,
             @Symbol(MongoDBSymbols.READ_PREFERENCE) ReadPreference readPreference,
             @Symbol(MongoDBSymbols.WRITE_CONCERN) WriteConcern writeConcern,
-            @Symbol(MongoDBSymbols.CONSISTENT_REQUEST) boolean consistentRequest,
             List<ServerAddress> serverAddresses)
     {
         this.logger = logger;
-        this.defaultDbName = defaultDbName;
-        this.consistentRequest = consistentRequest;
 
         MongoOptions options = new MongoOptions();
         options.connectionsPerHost = connectionPerHost;
@@ -45,7 +40,14 @@ public class MongoDBSourceImpl implements MongoDBSource
         options.w = w;
         options.wtimeout = wtimeout;
 
-        mongo = new Mongo(serverAddresses, options);
+        if (serverAddresses.isEmpty())
+            try {
+                mongo = new Mongo();
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+        else
+            mongo = new Mongo(serverAddresses, options);
 
         mongo.setReadPreference(readPreference);
         mongo.setWriteConcern(writeConcern);

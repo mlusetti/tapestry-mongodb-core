@@ -3,6 +3,7 @@ package org.apache.tapestry5.mongodb;
 import com.mongodb.ReadPreference;
 import com.mongodb.WriteConcern;
 import org.apache.tapestry5.internal.mongodb.MongoDBImpl;
+import org.apache.tapestry5.internal.mongodb.MongoDBSourceImpl;
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.ScopeConstants;
@@ -21,7 +22,7 @@ public class MongoDBModule
 {
     public static void bind(ServiceBinder binder)
     {
-
+        binder.bind(MongoDBSource.class, MongoDBSourceImpl.class);
     }
 
     public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration)
