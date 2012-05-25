@@ -17,4 +17,17 @@ public class MongoDBTestModule
     {
         configuration.add(MongoDBSymbols.DEFAULT_DB_NAME, "TapestryMongoTest");
     }
+
+
+    public static void contributeMongoDBSource(OrderedConfiguration<ServerAddress> configuration)
+    {
+        try
+        {
+            configuration.add("test", new ServerAddress("mongodb.datacode.it"));
+        }
+        catch (UnknownHostException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 }
