@@ -4,7 +4,10 @@ apply plugin: 'base'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'groovy'
+apply plugin: 'maven'
 
+group = "org.apache.tapestry"
+version = "1.0.0-alpha"
 
 repositories {
     mavenCentral()
@@ -19,7 +22,6 @@ dependencies {
     // testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: '5.3.3'
     // testCompile "org.easymock:easymock:$easymockVersion"
     // testCompile "org.testng:testng:$testngVersion", { transitive = false }
-
 
     testCompile "org.spockframework:spock-tapestry:0.6-groovy-1.8"
     groovy "org.codehaus.groovy:groovy-all:1.8.6"
