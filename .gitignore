@@ -9,4 +9,8 @@
 .idea
 *.iml
 
+# Gradle Files #
+.gradle
+build
+
 # END
