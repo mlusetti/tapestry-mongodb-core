@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 /**
  * Defines services which are responsible for MongoDB initializations and connections.
  */
-public class MongoDBModule
+public class MongodbCoreModule
 {
     public static void bind(ServiceBinder binder)
     {

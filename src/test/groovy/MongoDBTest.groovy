@@ -1,6 +1,6 @@
 import spock.lang.Specification
 import org.apache.tapestry5.ioc.annotations.SubModule
-import org.apache.tapestry5.mongodb.MongoDBModule
+import org.apache.tapestry5.mongodb.MongodbCoreModule
 import org.apache.tapestry5.ioc.annotations.Inject
 import org.apache.tapestry5.mongodb.MongoDBSource
 import org.apache.tapestry5.internal.mongodb.MongoDBTestModule
@@ -12,7 +12,7 @@ import org.apache.tapestry5.mongodb.MongoDB
 import com.mongodb.DBCollection
 import spock.lang.Shared
 
-@SubModule([ MongoDBModule.class, MongoDBTestModule.class ])
+@SubModule([ MongodbCoreModule.class, MongoDBTestModule.class ])
 class MongoDBTest extends Specification
 {
     final int total = 10000;
