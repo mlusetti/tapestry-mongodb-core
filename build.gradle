@@ -14,13 +14,13 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.apache.tapestry', name: 'tapestry-ioc', version: '5.3.3'
+    compile group: 'org.apache.tapestry', name: 'tapestry-ioc', version: '5.3.4'
 
     // compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.7.3', transitive: false
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.7.3'
     compile group: 'org.jongo', name: 'jongo', version: '0.1'
 
-    // testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: '5.3.3'
+    // testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: '5.3.4'
     // testCompile "org.easymock:easymock:$easymockVersion"
     // testCompile "org.testng:testng:$testngVersion", { transitive = false }
 
