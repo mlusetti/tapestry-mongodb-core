@@ -31,8 +31,6 @@ dependencies {
 
     testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.21"
 
-    testCompile "jmockmongo:jmockmongo:0.0.2"
-
     groovy "org.codehaus.groovy:groovy-all:1.8.6"
 }
 
