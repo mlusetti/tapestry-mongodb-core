@@ -23,7 +23,7 @@ public class MongoDBTestModule
     {
         try
         {
-            configuration.add("test", new ServerAddress("mongodb.datacode.it"));
+            configuration.add("test", new ServerAddress("localhost", 12345));
         }
         catch (UnknownHostException e)
         {

@@ -11,6 +11,8 @@ version = "1.0.0-alpha"
 
 repositories {
     mavenCentral()
+
+    mavenRepo url: "http://repository-thiloplanz.forge.cloudbees.com/release/"
 }
 
 dependencies {
@@ -23,7 +25,14 @@ dependencies {
     // testCompile "org.easymock:easymock:$easymockVersion"
     // testCompile "org.testng:testng:$testngVersion", { transitive = false }
 
+    testCompile group: 'org.jongo', name: 'jongo', version: '0.2'
+
     testCompile "org.spockframework:spock-tapestry:0.6-groovy-1.8"
+
+    testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.21"
+
+    testCompile "jmockmongo:jmockmongo:0.0.2"
+
     groovy "org.codehaus.groovy:groovy-all:1.8.6"
 }
 
