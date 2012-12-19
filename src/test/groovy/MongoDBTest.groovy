@@ -17,7 +17,7 @@ import de.flapdoodle.embed.mongo.MongodProcess
 import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.process.runtime.Network
 import de.flapdoodle.embed.mongo.MongodStarter
-import jmockmongo.MockMongo
+
 
 @SubModule([ MongodbCoreModule.class, MongoDBTestModule.class ])
 class MongoDBTest extends Specification

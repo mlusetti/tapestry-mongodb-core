@@ -21,37 +21,36 @@ public class MongoDBImpl implements MongoDB, ThreadCleanupListener
     private final String defaultDbName;
     private final boolean consistentRequest;
 
+	private final boolean secureMode;
+	private final String dbUsername;
+	private final String dbPassword;
+
     private DB db;
 
     public MongoDBImpl(Logger logger, MongoDBSource mongoDBSource,
-           String defaultDbName, boolean consistentRequest)
+           String defaultDbName, boolean consistentRequest,
+		   boolean secureMode, String dbUsername, String dbPassword)
     {
         this.logger = logger;
         this.mongo = mongoDBSource.getMongo();
         this.defaultDbName = defaultDbName;
         this.consistentRequest = consistentRequest;
+
+		this.secureMode = secureMode;
+		this.dbUsername = dbUsername;
+		this.dbPassword = dbPassword;
     }
 
     @Override
     public DB getDefaultMongoDb()
     {
-        db = getMongoDb(defaultDbName);
-
-        return db;
+        return buildDbSession(defaultDbName);
     }
 
     @Override
     public DB getMongoDb(String dbname)
     {
-        db = mongo.getDB(dbname);
-
-        if (consistentRequest)
-        {
-            db.requestStart();
-            db.requestEnsureConnection();
-        }
-
-        return db;
+		return buildDbSession(dbname);
     }
 
     @Override
@@ -60,4 +59,23 @@ public class MongoDBImpl implements MongoDB, ThreadCleanupListener
         if (consistentRequest)
             db.requestDone();
     }
+
+
+	private final DB buildDbSession(String dbname)
+	{
+		db = mongo.getDB(dbname);
+
+		if (consistentRequest)
+		{
+			db.requestStart();
+			db.requestEnsureConnection();
+		}
+
+		if (secureMode)
+		{
+			db.authenticate(dbUsername, dbPassword.toCharArray());
+		}
+
+		return db;
+	}
 }

@@ -7,25 +7,26 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 group = "org.apache.tapestry"
-version = "1.0.0-alpha"
+version = "0.4-SNAPSHOT"
 
 repositories {
     mavenCentral()
+
+    mavenLocal()
 
     mavenRepo url: "http://repository-thiloplanz.forge.cloudbees.com/release/"
 }
 
 dependencies {
-    compile group: 'org.apache.tapestry', name: 'tapestry-ioc', version: '5.3.4'
+    compile group: 'org.apache.tapestry', name: 'tapestry-ioc', version: '5.4-SNAPSHOT'
 
-    // compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.7.3', transitive: false
-    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.8.0'
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.10.1'
 
     // testCompile group: 'org.apache.tapestry', name: 'tapestry-test', version: '5.3.4'
     // testCompile "org.easymock:easymock:$easymockVersion"
     // testCompile "org.testng:testng:$testngVersion", { transitive = false }
 
-    testCompile group: 'org.jongo', name: 'jongo', version: '0.2'
+    testCompile group: 'org.jongo', name: 'jongo', version: '0.3'
 
     testCompile "org.spockframework:spock-tapestry:0.6-groovy-1.8"
 

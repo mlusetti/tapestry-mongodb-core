@@ -35,16 +35,25 @@ public class MongodbCoreModule
         configuration.add(MongoDBSymbols.WRITE_CONCERN, "NORMAL");
         configuration.add(MongoDBSymbols.READ_PREFERENCE, "PRIMARY");
         configuration.add(MongoDBSymbols.CONSISTENT_REQUEST, "false");
+
+		// Authentication (Mongo in secure mode)
+
+		configuration.add(MongoDBSymbols.SECURE_MODE, "false");
+		configuration.add(MongoDBSymbols.DB_USERNAME, "");
+		configuration.add(MongoDBSymbols.DB_PASSWORD, "");
     }
 
     @Scope(ScopeConstants.PERTHREAD)
     public static MongoDB buildMongoDB(Logger logger, MongoDBSource mongoDBSource,
                      PerthreadManager perthreadManager,
                      @Symbol(MongoDBSymbols.DEFAULT_DB_NAME) String defaultDbName,
-                     @Symbol(MongoDBSymbols.CONSISTENT_REQUEST) boolean consistentRequest)
+                     @Symbol(MongoDBSymbols.CONSISTENT_REQUEST) boolean consistentRequest,
+					 @Symbol(MongoDBSymbols.SECURE_MODE) boolean secureMode,
+					 @Symbol(MongoDBSymbols.DB_USERNAME) String dbUsername,
+					 @Symbol(MongoDBSymbols.DB_PASSWORD) String dbPassword)
     {
         MongoDBImpl mongoDB = new MongoDBImpl(logger, mongoDBSource,
-                defaultDbName, consistentRequest);
+                defaultDbName, consistentRequest, secureMode, dbUsername, dbPassword);
 
         perthreadManager.addThreadCleanupListener(mongoDB);
 
@@ -88,9 +97,13 @@ public class MongodbCoreModule
                         {
                             return WriteConcern.SAFE;
                         }
-                        else // NORMAL IS OUR DEFAULT
+						else if (input.equalsIgnoreCase("NORMAL"))
+						{
+							return WriteConcern.NORMAL;
+						}
+                        else // WriteConcern.ACKNOWLEDGED IS OUR DEFAULT
                         {
-                            return WriteConcern.NORMAL;
+                            return WriteConcern.ACKNOWLEDGED;
                         }
                     }
                 }
@@ -102,11 +115,11 @@ public class MongodbCoreModule
             {
                 if (input.equalsIgnoreCase("SECONDARY"))
                 {
-                    return ReadPreference.SECONDARY;
+                    return ReadPreference.secondary();
                 }
                 else // PRIMARY IS OUR DEFAULT
                 {
-                    return ReadPreference.PRIMARY;
+                    return ReadPreference.primary();
                 }
             }
         }));
