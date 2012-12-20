@@ -30,7 +30,7 @@ dependencies {
 
     testCompile "org.spockframework:spock-tapestry:0.6-groovy-1.8"
 
-    testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.21"
+    testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.28"
 
     groovy "org.codehaus.groovy:groovy-all:1.8.6"
 }
