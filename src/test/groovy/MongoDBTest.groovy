@@ -37,7 +37,7 @@ class MongoDBTest extends Specification
     def setupSpec()
     {
         MongodStarter runtime = MongodStarter.getDefaultInstance();
-        mongodExe = runtime.prepare(new MongodConfig(Version.Main.V2_0, 12345, Network.localhostIsIPv6()));
+        mongodExe = runtime.prepare(new MongodConfig(Version.Main.V2_2, 12345, Network.localhostIsIPv6()));
         mongod = mongodExe.start();
 
         jongo = new Jongo(mongoDB.getDefaultMongoDb())
