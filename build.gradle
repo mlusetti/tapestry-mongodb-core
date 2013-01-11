@@ -14,6 +14,8 @@ repositories {
 
     mavenLocal()
 
+    mavenRepo url: "https://repository.apache.org/content/groups/snapshots/"
+
     mavenRepo url: "http://repository-thiloplanz.forge.cloudbees.com/release/"
 }
 
