@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.apache.tapestry', name: 'tapestry-ioc', version: '5.4-SNAPSHOT'
+    compile group: 'org.apache.tapestry', name: 'tapestry-ioc', version: '5.4-alpha-3-SNAPSHOT'
 
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '2.10.1'
 
