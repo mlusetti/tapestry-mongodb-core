@@ -1,4 +1,6 @@
 tapestry-mongodb-core
 =====================
 
-Apache Tapestry - MongoDB integration module
+06 February 2013
+The code from this module has been imported in the
+Apache Tapestry master repo
